@@ -6,9 +6,11 @@ import Base: convert, promote_rule, show, showcompact,
              
 export Float65
 
-include("Float65.jl")
+include("type/Float65.jl")
+include("behavior/absorb.jl")
+#=
 include("basics.jl")
 include("fn1arg.jl")
 include("fn2arg.jl")
-
+=#
 end # module
