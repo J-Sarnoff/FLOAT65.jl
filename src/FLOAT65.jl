@@ -1,7 +1,8 @@
 module FLOAT65
 
 import Base: convert, promote_rule, show, showcompact,
-             isinf, isnan, issubnormal, isfinite,
+             typemin, typemax, realmin, realmax,
+             isinf, isnan, issubnormal, isfinite, isinteger,
              zero, one
              
 export Float65
