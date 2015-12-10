@@ -1,12 +1,12 @@
-bitstype 64 Float65{A} <: AbstractFloat
 
-param{A}(::Type{Float65{A}}) = A 
-param{A}(fp::Float65{A}) = A
-
-Float65(x::Float64) = reinterpret(Float65{zero(Int32)},x)
-Float65(A::Int32, x::Float64) = reinterpret(Float65{A},x)
-Float65(A::Int64, x::Float64) = Float65(convert(Int32,A),x)
-
-function show(io::IO, x::Float65)
-   show(io, reinterpret(Float64,x))
+immutable Float65 <: Real
+   fp::Float64
 end
+
+convert(::Type{Float64}, x::Float65) = reflect(x.fp)
+convert(::Type{Float65}, x::Float64) = Float65(project(x))
+
+promote_rule(::Type{Float64}, ::Type{Float65}) = Float65
+
+show(io::IO, x::Float65) = show(io, covert(Float64,x.fp))
+
