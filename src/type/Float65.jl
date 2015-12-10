@@ -6,6 +6,7 @@ Float65(A::Int32, x::Float64) = reinterpret(Float65{A},x)
 function show(io::IO, x::Float65)
    A  = typeof(x).parameters[1]
    fp = reinterpret(Float64,x)
-   s  = string(fp,"₍",A,"₎")
+   s  = string(fp)
    print(io, s)
+   A
 end
