@@ -1,12 +1,3 @@
-# these do not require decoding to work correctly
-
-issubnormal(a::Float65) = false
-for op in (:sign, :signbit, :isinf, :isnan)
-    @eval ($op)(a::Float65) = ($op)(a.fp)
-end
-(-)(a::Float65) = Float65(-a.fp)
-abs(a::Float65) = Float65(abs(a.fp))
-
 # these require decoding to work correctly
 
 isinteger(a::Float65) = isinteger(reflect(a.fp))
