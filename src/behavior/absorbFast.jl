@@ -13,6 +13,16 @@ typealias Float AbstractFloat
 
 @inline iscommon{F<:Float}(fp::F) = (isfinite(fp) && !(fp==zero(F)))
 
+@inline function pushout{F<:Float}(fp::F)
+   stationedExponent = get_exponent(fp) - Bias(F)
+   reinterpret(F,put_exponent(fp, stationedExponent))
+end
+
+@inline function pullback{F<:Float}(fp::F)
+   stationaryExponent = get_exponent(fp) + Bias(F)
+   reinterpret(F,put_exponent(fp, stationaryExponent))
+end 
+
 function project{F<:Float}(fp::F)
     if iscommon(fp)
        if AsTiny(F) <= fp <= AsHuge(F)
@@ -27,16 +37,11 @@ function project{F<:Float}(fp::F)
     end
 end    
 
-@inline function pushout{F<:Float}(fp::F)
-   stationedExponent = get_exponent(fp) - Bias(F)
-   reinterpret(F,put_exponent(fp, stationedExponent))
-end
-
 function reflect{F<:Float}(fp::F)
     fp = clr_ebit(fp)
     if iscommon(fp)
        if TinyProjected(F) < fp < HugeProjected(F)
-           pullback(fo)
+           pullback(fp)
        elseif fp <= TinyProjected(F)
            Tiny(F)
        else
@@ -47,10 +52,6 @@ function reflect{F<:Float}(fp::F)
     end
 end
 
-@inline function pullback{F<:Float}(fp::F)
-   stationaryExponent = get_exponent(fp) + Bias(F)
-   reinterpret(F,put_exponent(fp, stationaryExponent))
-end 
 
 #=
      The most significand bit in the exponent bit field
