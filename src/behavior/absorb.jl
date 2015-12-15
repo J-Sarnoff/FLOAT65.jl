@@ -8,19 +8,18 @@
     Reflect the projection as state-free value (the reflection).
 =#
 
-typealias Float AbstractFloat
 
-@inline function pushout{F<:Float}(fp::F)
+@inline function pushout{F<:AbstractFloat}(fp::F)
    stationedExponent = get_exponent(fp) - Bias(F)
    reinterpret(F,put_exponent(fp, stationedExponent))
 end
 
-@inline function pullback{F<:Float}(fp::F)
+@inline function pullback{F<:AbstractFloat}(fp::F)
    stationaryExponent = get_exponent(fp) + Bias(F)
    reinterpret(F,put_exponent(fp, stationaryExponent))
 end 
 
-function project{F<:Float}(fp::F)
+function project{F<:AbstractFloat}(fp::F)
     if AsTiny(F) <= fp <= AsHuge(F)
            pushout(fp)
     elseif fp == 0.0
@@ -38,7 +37,7 @@ function project{F<:Float}(fp::F)
     end
 end    
 
-function reflect{F<:Float}(fp::F)
+function reflect{F<:AbstractFloat}(fp::F)
     fp = clr_ebit(fp)
     if TinyProjected(F) < fp < HugeProjected(F)
         pullback(fp)
