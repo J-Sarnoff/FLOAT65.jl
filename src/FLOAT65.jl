@@ -14,6 +14,7 @@ import Base: convert, promote_rule, show, showcompact,
              
 export Float65
 
+include("behavior/Reinterpret.jl")
 include("behavior/absorb.jl")
 
 include("type/Float65.jl")
