@@ -14,6 +14,7 @@ import Base: convert, promote_rule, show, showcompact,
              
 export Float65
 
+
 include("behavior/Reinterpret.jl")
 include("behavior/ebit.jl")
 include("behavior/absorb.jl")
@@ -22,9 +23,5 @@ include("type/Float65.jl")
 include("type/basics.jl")
 include("math/arith.jl")
 include("math/elementary.jl")
-#=
-include("basics.jl")
-include("fn1arg.jl")
-include("fn2arg.jl")
-=#
+
 end # module
