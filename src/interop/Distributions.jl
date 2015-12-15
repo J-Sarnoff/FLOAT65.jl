@@ -1,7 +1,5 @@
 # interoperability with Distributions
 
-using Distributions
-
 import Distributions: Distribution,Univariate,Continuous,Triweight,AbstractMixtureModel,
                       cdf,pdf,quantile,logcdf,logpdf,ccdf,cquantile,invlogcdf,invlogccdf
 
