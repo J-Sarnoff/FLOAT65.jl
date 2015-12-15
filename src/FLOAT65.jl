@@ -24,4 +24,9 @@ include("type/basics.jl")
 include("math/arith.jl")
 include("math/elementary.jl")
 
+
+if isdefined(Main, :Distributions)
+    include("interop/Distributions.jl")
+end
+
 end # module
