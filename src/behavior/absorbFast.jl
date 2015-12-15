@@ -53,7 +53,7 @@ function reflect{F<:Float}(fp::F)
        else
            Huge(F)
        end
-    else # or ±Inf or NaN
+    else # ±Inf or NaN
         fp
     end
 end
