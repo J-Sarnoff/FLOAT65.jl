@@ -19,6 +19,8 @@ for op in (:(+), :(-), :(*), :(/), :(\), :(%))
         
         ($op){I<:Union{Int64,Int32}}(a::Float65, b::I) = Float65( $op(reflect(a.fp), b) )
         ($op){I<:Union{Int64,Int32}}(a::I, b::Float65) = Float65( $op(a, reflect(b.fp)) )
+        ($op)(a::Float65, b::Bool) = Float65( $op(reflect(a.fp), convert(Float64,b)) )
+        ($op)(a::Bool, b::Float65) = Float65( $op(convert(Float64,a), reflect(b.fp)) )
         ($op)(a::Float65, b::Real) = Float65( $op(reflect(a.fp), convert(Float64,b)) )
         ($op)(a::Real, b::Float65) = Float65( $op(convert(Float64,a), reflect(b.fp)) )
     end
