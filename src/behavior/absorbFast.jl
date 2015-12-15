@@ -11,7 +11,7 @@
 
 typealias Float AbstractFloat
 
-@inline iscommon{F<:Float}(fp::F) = (isfinite(fp) && !(fp==zero(F)))
+@inline iscommon{F<:Float}(fp::F) = (isfinite(fp) & !(fp==zero(F)))
 
 @inline function pushout{F<:Float}(fp::F)
    stationedExponent = get_exponent(fp) - Bias(F)
