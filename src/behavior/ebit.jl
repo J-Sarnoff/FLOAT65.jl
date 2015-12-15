@@ -23,6 +23,7 @@ for these stateful projections of Float64|32 values onto Float64|32 is given wit
 
 import Base: sign_mask, exponent_mask, exponent_bias, significand_bits
 
+typealias Float Float64
 
 #=
     The 'e-bit' is the most significant bit of the exponent in an IEEE754-2008 Std Binary float.
