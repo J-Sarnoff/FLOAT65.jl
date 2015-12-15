@@ -24,30 +24,30 @@ end
 end 
 
 function project{F<:Float}(fp::F)
-    if iscommon(fp)
-       if AsTiny(F) <= fp <= AsHuge(F)
+    if AsTiny(F) <= fp <= AsHuge(F)
            pushout(fp)
-       elseif fp < AsHuge(F)
+    elseif isfinite(fp)
+       if fp < AsHuge(F)
             TinyProjected(F)
        else
             HugeProjected(F)
        end
-    else  # ±0.0 ±Inf or NaN
+    else  # ±Inf or NaN
        fp
     end
 end    
 
 function reflect{F<:Float}(fp::F)
     fp = clr_ebit(fp)
-    if iscommon(fp)
-       if TinyProjected(F) < fp < HugeProjected(F)
-           pullback(fp)
-       elseif fp <= TinyProjected(F)
+    if TinyProjected(F) < fp < HugeProjected(F)
+        pullback(fp)
+    elseif isfinite(fp)
+       if fp <= TinyProjected(F)
            Tiny(F)
        else
            Huge(F)
        end
-    else # ±0.0 or ±Inf or NaN
+    else # or ±Inf or NaN
         fp
     end
 end
