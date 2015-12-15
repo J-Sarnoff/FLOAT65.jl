@@ -7,8 +7,8 @@ A variant of Float64 that enfolds a two-valued state directly.
 
 State is held within the floating point value by appropriating one bit of the
 exponent field.  This offers a value that maximally interoperable with Float64
-and carries alterable state.  It requires a fast decoding prior to calculation
-and fast encoding of the result. 
+and carries alterable state.  It requires decoding prior to calculation and
+encoding of the result. 
 
 This is a largely untested working implementation.  At best, which is with
 elementary functions, on my machine it runs 2.5x slower.  At worst, with multiply,
