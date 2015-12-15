@@ -25,9 +25,13 @@ end
 
 function project{F<:Float}(fp::F)
     if AsTiny(F) <= fp <= AsHuge(F)
-           (fp==0.0) ? fp : pushout(fp)
+           pushout(fp)
+    elseif fp == 0.0
+       fp
     elseif isfinite(fp)
-       if fp < AsHuge(F)
+       if fp == 0.0
+          fp
+       elseif fp < AsHuge(F)
             TinyProjected(F)
        else
             HugeProjected(F)
@@ -41,6 +45,8 @@ function reflect{F<:Float}(fp::F)
     fp = clr_ebit(fp)
     if TinyProjected(F) < fp < HugeProjected(F)
         pullback(fp)
+    elseif fp == 0.0
+        fp
     elseif isfinite(fp)
        if fp <= TinyProjected(F)
            Tiny(F)
