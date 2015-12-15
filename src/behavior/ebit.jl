@@ -23,8 +23,6 @@ for these stateful projections of Float64|32 values onto Float64|32 is given wit
 
 import Base: sign_mask, exponent_mask, exponent_bias, significand_bits
 
-typealias Float Float64
-
 #=
     The 'e-bit' is the most significant bit of the exponent in an IEEE754-2008 Std Binary float.
     These inline ops are used for direct access and immediate manipulation of the 'e-bit'.
@@ -58,8 +56,8 @@ end
 @inline get_exponent{T<:Unsigned}(x::T)       = (isolate_exponent(x) >> significand_bits(T))
 @inline put_exponent{T<:Unsigned}(x::T, e::T) = (isolate_exponent(e << significand_bits(T)) | clear_exponent(x))
 
-@inline get_exponent(x::Float)  = get_exponent(reinterpret(Unsigned,x))
-@inline put_exponent(x::Float, e::Unsigned)= put_exponent(reinterpret(Unsigned,x),e)
+@inline get_exponent(x::AbstractFloat)  = get_exponent(reinterpret(Unsigned,x))
+@inline put_exponent(x::AbstractFloat, e::Unsigned)= put_exponent(reinterpret(Unsigned,x),e)
 
 #=
   nomenclature
