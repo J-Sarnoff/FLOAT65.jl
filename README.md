@@ -11,7 +11,7 @@ and carries alterable state.  It requires decoding prior to calculation and
 encoding of the result. 
 
 This is a largely untested working implementation.  At best, which is with
-elementary functions, on my machine it runs 2.5x slower.  At worst, with multiply,
-it runs 6x slower than Float64*Float64.  The implementation supports Tiny and Huge
-as collective, finite values.
+elementary functions, on my machine it runs 2.5x slower than Float64.  With
+multiply, it runs 6x slower.  The implementation supports Tiny and Huge as
+collective, finite values.
 
