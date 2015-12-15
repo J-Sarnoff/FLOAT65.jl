@@ -4,7 +4,7 @@ import Base: convert, promote_rule, show, showcompact,
              typemin, typemax, realmin, realmax, sizeof,
              isinf, isnan, issubnormal, isfinite, isinteger,
              zero, one,
-             (==),(!=),(<),(<=),(>=),(>),isless,isequal
+             (==),(!=),(<),(<=),(>=),(>),isless,isequal,
              (+),(-),(*),(/),(\),(%),
              exp, expm1, log, log1p,
              sin, cos, tan, csc, sec, cot,
@@ -14,8 +14,10 @@ import Base: convert, promote_rule, show, showcompact,
              
 export Float65
 
-include("type/Float65.jl")
 include("behavior/absorb.jl")
+
+include("type/Float65.jl")
+include("type/basics.jl")
 include("math/arith.jl")
 include("math/elementary.jl")
 #=
