@@ -1,6 +1,9 @@
+import Base:convert, promote_rule, show
 
 immutable Float65 <: Real
    fp::Float64
+   
+   Float65(fp::Float64) = new(project(fp))
 end
 
 convert(::Type{Float64}, x::Float65) = reflect(x.fp)
