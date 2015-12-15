@@ -8,8 +8,14 @@ end
 
 convert(::Type{Float64}, x::Float65) = reflect(x.fp)
 convert(::Type{Float65}, x::Float64) = Float65(project(x))
+convert(::Type{Float65}, x::Bool) = Float65(convert(Float64,x))
+convert(::Type{Float65}, x::Real) = Float65(convert(Float64,x))
+
 
 promote_rule(::Type{Float64}, ::Type{Float65}) = Float65
+promote_rule(::Type{Bool}, ::Type{Float65}) = Float65
+promote_rule(::Type{Real}, ::Type{Float65}) = Float65
+
 
 show(io::IO, x::Float65) = show(io, convert(Float64,x))
 
