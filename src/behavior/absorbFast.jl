@@ -25,7 +25,7 @@ end
 
 function project{F<:Float}(fp::F)
     if AsTiny(F) <= fp <= AsHuge(F)
-           pushout(fp)
+           (fp==0.0) ? fp : pushout(fp)
     elseif isfinite(fp)
        if fp < AsHuge(F)
             TinyProjected(F)
