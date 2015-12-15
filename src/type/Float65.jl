@@ -11,5 +11,5 @@ convert(::Type{Float65}, x::Float64) = Float65(project(x))
 
 promote_rule(::Type{Float64}, ::Type{Float65}) = Float65
 
-show(io::IO, x::Float65) = show(io, covert(Float64,x.fp))
+show(io::IO, x::Float65) = show(io, convert(Float64,x.fp))
 
