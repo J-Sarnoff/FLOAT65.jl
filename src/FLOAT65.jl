@@ -26,7 +26,6 @@ include("math/elementary.jl")
 
 
 if isdefined(Main, :Distributions)
-    using Distributions
     include("interop/Distributions.jl")
 end
 
