@@ -13,6 +13,8 @@ convert(::Type{Float65}, x::Real) = Float65(convert(Float64,x))
 
 
 promote_rule(::Type{Float64}, ::Type{Float65}) = Float65
+promote_rule(::Type{Int64}, ::Type{Float65}) = Float65
+promote_rule(::Type{Int32}, ::Type{Float65}) = Float65
 promote_rule(::Type{Bool}, ::Type{Float65}) = Float65
 promote_rule(::Type{Real}, ::Type{Float65}) = Float65
 
