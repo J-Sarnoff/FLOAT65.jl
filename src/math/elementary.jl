@@ -29,4 +29,4 @@ for op in (:exp, :expm1, :log, :log1p,
     end
 end
 
-end
+end # PropogateState
