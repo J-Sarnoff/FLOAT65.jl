@@ -26,11 +26,9 @@ using FLOAT65
 ```
 There are two Bools that determine if/when the set state propagates automatically.
 To engage automatic propagation of the set state, before loading/using this module,
-PropogateState (and PropagateSharedState, if desired) must be assigned true.
+PropogateState must be assigned true.
 
 PropagteState = true        # the set state will propogate through arithmetic and
-                             # elementary function calculations
+                            # elementary function calculations
 
-PropagateSharedState = true  # the set state will propogate through arithmetic
-                             # calculations iff both operands are in the set state.
 ```
