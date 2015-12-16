@@ -1,5 +1,5 @@
 
-immutable Float65 <: Real
+type Float65 <: Real
    fp::Float64
    
    Float65(fp::Float64) = new(project(fp))
@@ -18,3 +18,12 @@ end
 
 show(io::IO, x::Float65) = show(io, convert(Float64,x))
 
+@inline setstate(x::Float65) = set_ebit(x.fp)
+@inline clearstate(x::Float65) = clr_ebit(x.fp)
+@inline getstate(x::Float65) = tst_ebit(x.fp)
+@inline setstate(x::Float65, s::Bool) = (s ? set_ebit(x.fp) : clr_ebit(x.fp))
+
+clearstate(x::Float64) = Float65(x)
+setstate(x::Float64) = setstate(Float65(x))
+setstate(x::Float64,s::Bool) = setstate(Float65(x),s)
+getstate(x::Float64) = false
