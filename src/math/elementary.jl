@@ -1,4 +1,4 @@
-if isdefined(:PropogateState) && PropogateState
+if isdefined(:PropagateState) && PropagateState
 
 for op in (:exp, :expm1, :log, :log1p,
            :sin, :cos, :tan, :csc, :sec, :cot,
@@ -17,7 +17,7 @@ for op in (:exp, :expm1, :log, :log1p,
     end
 end
 
-else # do not propogate the set state
+else # do not propagate the set state
 
 for op in (:exp, :expm1, :log, :log1p,
            :sin, :cos, :tan, :csc, :sec, :cot,
@@ -29,4 +29,4 @@ for op in (:exp, :expm1, :log, :log1p,
     end
 end
 
-end # PropogateState
+end # PropagateState
