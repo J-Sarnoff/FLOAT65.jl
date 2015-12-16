@@ -4,7 +4,6 @@ isinteger(a::Float65) = isinteger(reflect(a.fp))
 
 
 if isdefined(:PropagateState) && PropagateState
-begin
 
 if isdefined(:PropagateSharedState) && PropagateSharedState
 
