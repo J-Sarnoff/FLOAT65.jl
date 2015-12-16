@@ -20,6 +20,7 @@ for op in (:(+), :(-), :(*), :(/), :(\), :(%))
             value
          end
     end
+end    
          
 else # do propagate the set state when at least one input is in the set state
 
