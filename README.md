@@ -1,9 +1,9 @@
-### Float65
+### FLOAT65
 ```ruby
                       Jeffrey Sarnoff            2015-Dec-15
 ```
 
-A variant of Float64 that enfolds a two-valued state directly.
+Exports Float65, a variant of Float64 that enfolds a two-valued state directly.
 
 State is held within the floating point value by appropriating one bit of the
 exponent field.  This offers a value that maximally interoperable with Float64
