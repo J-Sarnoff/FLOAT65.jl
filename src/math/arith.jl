@@ -4,7 +4,7 @@ isinteger(a::Float65) = isinteger(reflect(a.fp))
 
 
 if isdefined(:PropagateState) && PropagateState
-
+begin
 
 if isdefined(:PropagateSharedState) && PropagateSharedState
 
@@ -24,6 +24,8 @@ for op in (:(+), :(-), :(*), :(/), :(\), :(%))
          
 else # do propagate the set state when at least one input is in the set state
 
+for op in (:(+), :(-), :(*), :(/), :(\), :(%))
+
     @eval begin
     
         function ($op){T<:Float65}(a::T, b::T)
@@ -35,6 +37,7 @@ else # do propagate the set state when at least one input is in the set state
             value
          end
     end
+end
 
 end # PropagateSharedState
 
