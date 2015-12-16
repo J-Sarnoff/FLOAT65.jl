@@ -12,7 +12,7 @@ import Base: convert, promote_rule, show, showcompact,
              sinh, cosh, tanh, csch, sech, coth,
              asinh, acosh, atanh, acsch, asech, acoth
              
-export Float65
+export Float65, setstate, clearstate, getstate
 
 
 include("behavior/Reinterpret.jl")
