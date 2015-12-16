@@ -1,4 +1,3 @@
-import Base:convert, promote_rule, show
 
 immutable Float65 <: Real
    fp::Float64
