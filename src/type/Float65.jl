@@ -6,7 +6,7 @@ type Float65 <: Real
 end
 
 convert(::Type{Float64}, x::Float65) = reflect(x.fp)
-convert(::Type{Float65}, x::Float64) = Float65(project(x))
+convert(::Type{Float65}, x::Float64) = Float65(x)
 for T in (:Float32, :Float16, :Int64, :Int32, :Int16, :Bool, :Real)
     @eval convert(::Type{Float65}, x::$T) = Float65(convert(Float64,x))
 end
