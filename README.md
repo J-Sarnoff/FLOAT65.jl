@@ -15,3 +15,13 @@ elementary functions, on my machine it runs 2.5x slower than Float64.  With
 multiply, it runs 6x slower.  The implementation supports Tiny and Huge as
 collective, finite values.
 
+```
+# for interoperability with Polynomials just use Polynomials
+# for interoperability with Distributions that are Univariate and Continuous
+
+using Distributions
+using FLOAT65
+```
+
+
+
