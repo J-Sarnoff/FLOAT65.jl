@@ -22,7 +22,7 @@ include("behavior/absorb.jl")
 include("type/Float65.jl")
 include("type/basics.jl")
 
-if (isdefined(:PropogateState) && PropogateState==true)
+if (isdefined(:PropagateState) && PropagateState==true)
 
 include("math/propagateState/arith.jl")
 include("math/propagateState/elementary.jl")
