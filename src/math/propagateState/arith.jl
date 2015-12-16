@@ -45,9 +45,9 @@ for op in (:(+), :(-), :(*), :(/), :(\), :(%))
             getstate(a) ? setstate(Float65( $op(reflect(a.fp), convert(Float64,b)) )) : Float65( $op(reflect(a.fp), convert(Float64,b)) )
         ($op){T<:Float65}(a::Bool, b::T) = 
             getstate(b) ? setstate(Float65( $op(convert(Float64,a), reflect(b.fp)) )) : Float65( $op(convert(Float64,a), reflect(b.fp)) )
-        ($op){T<:Float65}(a::T, b::Real) = 
+        ($op){T<:Float65,R<:Real}(a::T, b::R) = 
             getstate(a) ? setstate(Float65( $op(reflect(a.fp), convert(Float64,b)) )) : Float65( $op(reflect(a.fp), convert(Float64,b)) )
-        ($op){T<:Float65}(a::Real, b::T) = 
+        ($op){T<:Float65,R<:Real}(a::R, b::T) = 
             getstate(b) ? setstate(Float65( $op(convert(Float64,a), reflect(b.fp)) )) : Float65( $op(convert(Float64,a), reflect(b.fp)) )
     end
 end
