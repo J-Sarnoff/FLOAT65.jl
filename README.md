@@ -23,5 +23,14 @@ using Distributions
 using FLOAT65
 ```
 
+```
+There are two Bools that determine if/when the set state propogates automatically.
+To engage automatic propogation of the set state, before loading/using this module,
+PropogateState (and PropogateSharedState, if desired) must be assigned true.
 
+PropogateState = true        # the set state will propogate through arithmetic and
+                             # elementary function calculations
 
+PropogateSharedState = true  # the set state will propogate through arithmetic
+                             # calculations iff both operands are in the set state.
+```
