@@ -7,7 +7,7 @@ typealias TriDist Triweight
 typealias MixDist AbstractMixtureModel{Univariate,Continuous}
 typealias UniDist Distribution{Univariate,Continuous}
 
-if isdefined(:PropagateState) && PropagateState
+if (isdefined(Main,:PropagateState) && Main.PropagateState==true)
 
 pdf(d::MixDist, x::Float65) = 
     getstate(x) ? setstate(pdf(d, convert(Float64,x))) : pdf(d, convert(Float64,x))
