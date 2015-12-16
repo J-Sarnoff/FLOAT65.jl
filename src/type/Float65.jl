@@ -18,10 +18,18 @@ end
 
 show(io::IO, x::Float65) = show(io, convert(Float64,x))
 
-@inline setstate(x::Float65) = set_ebit(x.fp)
-@inline clearstate(x::Float65) = clr_ebit(x.fp)
 @inline getstate(x::Float65) = tst_ebit(x.fp)
-@inline setstate(x::Float65, s::Bool) = (s ? set_ebit(x.fp) : clr_ebit(x.fp))
+
+function clearstate(x::Float65)
+   x.fp = clr_ebit(x.fp)
+   x
+end
+
+function setstate(x::Float65)
+   x.fp = set_ebit(x.fp)
+   x
+end
+setstate(x::Float65, s::Bool) = (s ? setstate(x) : x)
 
 clearstate(x::Float64) = convert(Float65,x)
 setstate(x::Float64) = setstate(convert(Float65,x))
