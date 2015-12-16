@@ -21,9 +21,18 @@ include("behavior/absorb.jl")
 
 include("type/Float65.jl")
 include("type/basics.jl")
-include("math/arith.jl")
-include("math/elementary.jl")
 
+if (isdefined(:PropogateState) && PropogateState==true)
+
+include("math/propagateState/arith.jl")
+include("math/propagateState/elementary.jl")
+
+else # do not propogate the set state
+
+include("math/assignState/arith.jl")
+include("math/assignState/elementary.jl")
+
+end
 
 if isdefined(Main, :Distributions)
     include("interop/Distributions.jl")
