@@ -15,3 +15,8 @@ realmax(::Type{Float65}) = Huge
 realmin(x::Float65) = realmin(Float65)
 realmax(x::Float65) = realmax(Float65)
 
+zero(::Float65)  = convert(Float65, 0.0)
+one(::Float65)   = convert(Float65, 1.0)
+zero(x::Float65) = zero(Float65)
+one(x::Float65)  = one(Float65)
+
