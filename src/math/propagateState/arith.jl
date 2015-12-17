@@ -24,7 +24,8 @@ for fn in (:abs, :sqrt)
 end   
 
 
-for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^))
+for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^), 
+           :div, :fld, :rem, :mod, :mod1, :rem1, :fld1)
 
     @eval begin
     
@@ -40,7 +41,8 @@ for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^))
 end
 
 
-for op in (:(+), :(-), :(*), :(/), :(\), :(%))
+for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^),
+           :div, :fld, :rem, :mod, :mod1, :rem1, :fld1)
     @eval begin
     
         function ($op){T<:Float65}(a::T, b::Float64)
