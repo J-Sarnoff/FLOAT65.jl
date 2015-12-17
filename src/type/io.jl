@@ -3,7 +3,7 @@ const NaNValue    = "NaN65"
 const InfValue    = "∞"
 const PosInfValue = "+∞" 
 const NegInfValue = "-∞" 
-const InfName     = "Inf"
+const InfName     = "Inf65"
 
 const TinyValue = "⬭"
 const HugeValue = "⬬"
