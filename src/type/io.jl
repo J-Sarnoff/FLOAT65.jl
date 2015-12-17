@@ -28,10 +28,10 @@ function show(io::IO, x::Float65)
        else
           s = prepshowHuge(fp, state)
        end
-    elseif isinf(fp)  # ±Inf or NaN
-       s = prepshowInf(fp,state)
+    elseif isinf(fp)  # ±Inf or NaN (restore from clearing the state)
+       s = prepshowInf(x.fp,state)
     else
-       s = prepshowNaN(fp,state)
+       s = prepshowNaN(x.fp,state)
     end
 
     print(io, s)
