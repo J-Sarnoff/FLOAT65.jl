@@ -1,4 +1,4 @@
-const NaNValue    = "NaN"
+const NaNValue    = "NaN65"
 
 const InfValue    = "∞"
 const PosInfValue = "+∞" 
@@ -89,5 +89,5 @@ function prepshowInf(fp::Float64, state::Bool)
    string( prepnumsign(fp), InfValue )
 end
 function prepshowNaN(fp::Float64, state::Bool)
-   string( prepnumsign(fp), NaNValue )
+   NaNValue
 end
