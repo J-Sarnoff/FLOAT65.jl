@@ -24,13 +24,12 @@ using FLOAT65
 ```
 
 ```
-There are two Bools that determine if/when the set state propagates automatically.
 To engage automatic propagation of the set state, before loading/using this module,
 PropogateState must be assigned true.
 
 PropagateState = true        # the set state will propogate through arithmetic
                              #     and elementary function calculations
-using FLOAT65
+using FLOAT65                # PropagateState = true (MUST come first if used)
 
 pi_clr = Float65(pi); pi_set = setstate(Float65(pi));
 julia> pi_clr,getstate(pi_clr), pi_set,getstate(pi_set)
