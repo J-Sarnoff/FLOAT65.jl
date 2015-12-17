@@ -2,6 +2,8 @@
 
 isinteger(a::Float65) = isinteger(reflect(a.fp))
 
+(-){T<:Float65}(a::T) = (T)( (-)(reflect(a.fp)) )
+
 sqrt{T<:Float65}(a::T) = (T)( sqrt(reflect(a.fp)) )
 
 for op in (:(+), :(-), :(*), :(/), :(\), :(%))
