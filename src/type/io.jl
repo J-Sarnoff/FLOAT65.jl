@@ -18,12 +18,12 @@ function show(io::IO, x::Float65)
     state = getstate(x)
     fp = convert(Float64, x)
     
-    if AsTiny(F) <= fp <= AsHuge(F)
+    if AsTiny(F) <= fp <= AsHuge(Float64)
        s = prepshow(fp, state)
     elseif fp == 0.0
        s = prepshow0(fp, state)
     elseif isfinite(fp)
-       if fp <= AsTiny(F)
+       if fp <= AsTiny(Float64)
           s = prepshowTiny(fp, state)
        else
           s = prepshowHuge(fp, state)
