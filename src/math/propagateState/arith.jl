@@ -2,14 +2,6 @@
 
 isinteger(a::Float65) = isinteger(reflect(a.fp))
 
-function (abs){T<:Float64}(a::T)
-    value = (T)( (abs)(reflect(a.fp)) )
-    if getstate(a)
-       value = setstate(value)
-    end
-    value
-end
-
 function (-){T<:Float64}(a::T)
     value = (T)( (-)(reflect(a.fp)) )
     if getstate(a)
@@ -18,15 +10,21 @@ function (-){T<:Float64}(a::T)
     value
 end
 
-function sqrt{T<:Float64}(a::T)
-    value = (T)( sqrt(reflect(a.fp)) )
-    if getstate(a)
-       value = setstate(value)
-    end
-    value
-end
+for fn in (:abs, :sqrt)
+   @eval begin
 
-for op in (:(+), :(-), :(*), :(/), :(\), :(%))
+      function ($fn){T<:Float64}(a::T)
+          value = (T)( ($fn)(reflect(a.fp)) )
+          if getstate(a)
+              value = setstate(value)
+          end
+          value
+      end
+   end
+end   
+
+
+for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^))
 
     @eval begin
     
