@@ -18,16 +18,16 @@ function show(io::IO, x::Float65)
     state = getstate(x)
     fp = convert(Float64, x)
     
-    if Tiny(Float64) < fp < Huge(Float64)
-       s = prepshow(fp, state)
-    elseif fp == 0.0
-       s = prepshow0(fp, state)
-    elseif isfinite(fp)
-       if fp <= AsTiny(Float64)
+    if isfinite(x)
+        if Tiny(Float64) < fp < Huge(Float64)
+           s = prepshow(fp, state)
+        elseif fp == 0.0
+           s = prepshow0(fp, state)
+        elseif fp <= AsTiny(Float64)
           s = prepshowTiny(fp, state)
-       else
+        else
           s = prepshowHuge(fp, state)
-       end
+        end
     elseif isinf(fp)  # ±Inf or NaN (restore from clearing the state)
        s = prepshowInf(x.fp,state)
     else
