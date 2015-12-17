@@ -26,7 +26,7 @@ include("type/Float65.jl")
 include("type/basics.jl")
 include("type/compare.jl")
 include("type/io.jl")
-include("type/wrapfunsl.jl")
+include("type/wrapfuns.jl")
 
 if (isdefined(Main,:PropagateState) && Main.PropagateState==true)
 
