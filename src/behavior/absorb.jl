@@ -33,8 +33,6 @@ function project{F<:AbstractFloat}(fp::F)
            signbit(fp) ? -set_ebit(HugeProjected(F)) : HugeProjected(F)
        end
     else  # ±Inf or NaN
-       if isinf(fp) 
-            set_ebit(fp)
        isinf(fp) ? set_ebit(fp) : fp
     end
 end    
