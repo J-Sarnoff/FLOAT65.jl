@@ -2,6 +2,14 @@
 
 isinteger(a::Float65) = isinteger(reflect(a.fp))
 
+function (abs){T<:Float64}(a::T)
+    value = (T)( (abs)(reflect(a.fp)) )
+    if getstate(a)
+       value = setstate(value)
+    end
+    value
+end
+
 function (-){T<:Float64}(a::T)
     value = (T)( (-)(reflect(a.fp)) )
     if getstate(a)
