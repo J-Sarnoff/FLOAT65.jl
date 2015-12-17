@@ -6,7 +6,8 @@ isinteger(a::Float65) = isinteger(reflect(a.fp))
 
 sqrt{T<:Float65}(a::T) = (T)( sqrt(reflect(a.fp)) )
 
-for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^))
+for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^),
+           :div, :fld, :rem, :mod, :mod1, :rem1, :fld1)
     @eval begin
         ($op){T<:Float65}(a::T, b::Float65) = (T)( $op(reflect(a.fp), reflect(b.fp)) )
         ($op){T<:Float65}(a::T, b::Float64) = (T)( $op(reflect(a.fp), b) )
