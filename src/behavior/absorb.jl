@@ -21,18 +21,20 @@ end
 
 function project{F<:AbstractFloat}(fp::F)
     if AsTiny(F) <= fp <= AsHuge(F)
-           pushout(fp)
+      pushout(fp)
     elseif fp == 0.0
        fp
     elseif isfinite(fp)
        if fp == 0.0
-          fp
+           fp
        elseif fp < AsHuge(F)
-            set_ebit(TinyProjected(F))
+           signbit(fp) ? -set_ebit(TinyProjected(F)) : TinyProjected(F)
        else
-            set_ebit(HugeProjected(F))
+           signbit(fp) ? -set_ebit(HugeProjected(F)) : HugeProjected(F)
        end
     else  # ±Inf or NaN
+       if isinf(fp) 
+            set_ebit(fp)
        isinf(fp) ? set_ebit(fp) : fp
     end
 end    
