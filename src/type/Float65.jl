@@ -35,4 +35,8 @@ setstate(x::Float64) = setstate(convert(Float65,x))
 setstate(x::Float64,s::Bool) = setstate(convert(Float65,x),s)
 getstate(x::Float64) = false
 
-clrstate=clearstate
+@vectorize_1arg Real Float65
+
+@vectorize_1arg Float65 getstate
+@vectorize_1arg Float65 setstate
+@vectorize_1arg Float65 clearstate
