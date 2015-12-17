@@ -1,4 +1,5 @@
-const NaNValue    = "NaN65"
+const NaNValue    = "NaN"
+const NaNName     = "NaN65"
 
 const InfValue    = "∞"
 const PosInfValue = "+∞" 
@@ -7,7 +8,7 @@ const InfName     = "Inf65"
 
 const TinyValue = "⬭"
 const HugeValue = "⬬"
-const TinyName  = "tiny"
+const TinyName  = "TiNY"
 const HugeName  = "HuGE"
 
 const Exactly   = "̇ "
