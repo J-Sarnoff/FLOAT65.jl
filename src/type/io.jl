@@ -38,6 +38,14 @@ function show(io::IO, x::Float65)
 end
 
 @inline prepshowState(state::Bool) = state ? Inexactly : Exactly
+@inline function prepnumsign(fp::Float64)
+    isneg = signbit(fp)
+    if isneg
+        "-"
+    else
+        "+"
+    end
+end
 
 function prepshow(fp::Float64, state::Bool)
    string(fp, prepshowState(state))
@@ -46,14 +54,14 @@ function prepshow0(fp::Float64, state::Bool)
    string(fp, prepshowState(state))
 end
 function prepshowTiny(fp::Float64, state::Bool)
-   string( (signbit(fp) ? "-" : "+"), TinyValue )
+   string( prepnumsign(fp), TinyValue )
 end
 function prepshowHuge(fp::Float64, state::Bool)
-   string( (signbit(fp) ? "-" : "+"), HugeValue )
+   string( prepnumsign(fp), HugeValue )
 end
 function prepshowInf(fp::Float64, state::Bool)
-   string( (signbit(fp) ? "-" : "+"), InfValue )
+   string( prepnumsign(fp), InfValue )
 end
 function prepshowNaN(fp::Float64, state::Bool)
-   string( (signbit(fp) ? "-" : "+"), NaNValue )
+   string( prepnumsign(fp), NaNValue )
 end
