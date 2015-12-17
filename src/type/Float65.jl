@@ -16,7 +16,6 @@ for T in (:Float64, :Float32, :Float16, :Int64, :Int32, Int16, :Bool, :Real)
    @eval promote_rule(::Type{Float65}, ::Type{$T}) = Float65
 end   
 
-show(io::IO, x::Float65) = show(io, convert(Float64,x))
 
 @inline getstate(x::Float65) = tst_ebit(x.fp)
 
