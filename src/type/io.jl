@@ -54,10 +54,10 @@ function prepshow0(fp::Float64, state::Bool)
    string(fp, prepshowState(state))
 end
 function prepshowTiny(fp::Float64, state::Bool)
-   string( prepnumsign(fp), TinyValue )
+   string( prepnumsign(fp), TinyName )
 end
 function prepshowHuge(fp::Float64, state::Bool)
-   string( prepnumsign(fp), HugeValue )
+   string( prepnumsign(fp), HugeName )
 end
 function prepshowInf(fp::Float64, state::Bool)
    string( prepnumsign(fp), InfValue )
