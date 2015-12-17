@@ -2,7 +2,7 @@
 ```ruby
                       Jeffrey Sarnoff            2015-Dec-15
 ```
-_*under development, changing frequently*_
+_*under development, frequent updates, the approach is not changing*_
 
 Exports Float65, a variant of Float64 that enfolds a two-valued state directly.
 
