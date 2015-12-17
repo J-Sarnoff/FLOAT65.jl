@@ -82,8 +82,10 @@ situated{T<:AbstractFloat}(x::T) = !tst_ebit(x)  #      is this situated?
                                           <reciprocals>
 =#
 
-@inline isTiny{T<:AbstractFloat}(x::T) = (x <= AsTiny(T))
-@inline isHuge{T<:AbstractFloat}(x::T) = (x <= AsHuge(T))
+@inline isTiny{T<:AbstractFloat}(x::T) = (x <= AsTiny(T)) & (x != zero(T))
+@inline isHuge{T<:AbstractFloat}(x::T) = (x >= AsHuge(T)) & (x != (T)(Inf))
+@inline isTinyProjected{T<:AbstractFloat}(x::T) = (x <= AsTinyProjected(T)) & (x != zero(T))
+@inline isHugeProjected{T<:AbstractFloat}(x::T) = (x >= AsHugeProjected(T)) & (x != (T)(Inf))
 
 
 # huge/tiny gathers all finite values larger/smaller (or equal) itself
