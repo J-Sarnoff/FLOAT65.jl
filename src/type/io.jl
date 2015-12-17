@@ -7,8 +7,8 @@ const InfName     = "Inf65"
 
 const TinyValue = "⬭"
 const HugeValue = "⬬"
-const TinyName  = "TINY"
-const HugeName  = "HUGE"
+const TinyName  = "tiny"
+const HugeName  = "HuGE"
 
 const Exactly   = "̇ "
 const Inexactly = "~"
