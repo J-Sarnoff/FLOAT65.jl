@@ -20,3 +20,5 @@ for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^))
         ($op){T<:Float65,R<:Real}(a::R, b::T) = (T)( $op(convert(Float64,a), reflect(b.fp)) )
     end
 end
+
+eps{T<:Float65}(a::T) = (T)( eps(reflect(a.fp))  )
