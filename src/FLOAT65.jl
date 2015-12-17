@@ -3,7 +3,7 @@ module FLOAT65
 import Base: convert, promote_rule, show, showcompact,
              typemin, typemax, realmin, realmax, sizeof,
              isinf, isnan, issubnormal, isfinite, isinteger,
-             zero, one, sign, signbit, abs,
+             zero, one, sign, signbit, abs, eps,
              (==),(!=),(<),(<=),(>=),(>), isless, isequal,
              (+),(-),(*),(/),(\),(%), sqrt,
              exp, expm1, log, log1p,
