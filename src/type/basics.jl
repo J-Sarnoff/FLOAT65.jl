@@ -20,3 +20,6 @@ one(::Float65)   = convert(Float65, 1.0)
 zero(x::Float65) = zero(Float65)
 one(x::Float65)  = one(Float65)
 
+sizeof(::Type{Float65}) = 8
+sizeof(x::Float65) = sizeof(Float65)
+
