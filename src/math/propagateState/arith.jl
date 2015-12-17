@@ -2,7 +2,7 @@
 
 isinteger(a::Float65) = isinteger(reflect(a.fp))
 
-function (-){T<:Float64}(a::T)
+function (-){T<:Float65}(a::T)
     value = (T)( (-)(reflect(a.fp)) )
     if getstate(a)
        value = setstate(value)
@@ -13,7 +13,7 @@ end
 for fn in (:abs, :sqrt)
    @eval begin
 
-      function ($fn){T<:Float64}(a::T)
+      function ($fn){T<:Float65}(a::T)
           value = (T)( ($fn)(reflect(a.fp)) )
           if getstate(a)
               value = setstate(value)
