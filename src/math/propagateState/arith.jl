@@ -3,9 +3,11 @@
 isinteger(a::Float65) = isinteger(reflect(a.fp))
 
 function (-){T<:Float65}(a::T)
-    value = (T)( (-)(reflect(a.fp)) )
+    value = a.fp
+    value = reflect(value)
+    value = -value
     if getstate(a)
-       value = setstate(value)
+        value = setstate(value)
     end
     value
 end
