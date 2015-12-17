@@ -73,3 +73,11 @@ for op in (:(+), :(-), :(*), :(/), :(\), :(%))
             getstate(b) ? setstate(Float65( $op(convert(Float64,a), reflect(b.fp)) )) : Float65( $op(convert(Float64,a), reflect(b.fp)) )
     end
 end
+
+function (eps){T<:Float64}(a::T)
+    value = (T)( (eps)(reflect(a.fp)) )
+    if getstate(a)
+       value = setstate(value)
+    end
+    value
+end
