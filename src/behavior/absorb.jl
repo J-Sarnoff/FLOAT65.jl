@@ -28,9 +28,9 @@ function project{F<:AbstractFloat}(fp::F)
        if fp == 0.0
           fp
        elseif fp < AsHuge(F)
-            TinyProjected(F)
+            setstate(TinyProjected(F))
        else
-            HugeProjected(F)
+            setstate(HugeProjected(F))
        end
     else  # ±Inf or NaN
        fp
