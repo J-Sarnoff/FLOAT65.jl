@@ -13,7 +13,7 @@ import Base: convert, promote_rule, show, showcompact,
              asinh, acosh, atanh, acsch, asech, acoth,
              (^)
              
-export Float65, setstate, clearstate, getstate
+export Float65, getstate, setstate, clearstate, clrstate # clrstate and clearstate are synonyms
 
 
 include("behavior/Reinterpret.jl")
