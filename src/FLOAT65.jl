@@ -22,6 +22,7 @@ include("behavior/absorb.jl")
 
 include("type/Float65.jl")
 include("type/basics.jl")
+include("type/compare.jl")
 include("type/io.jl")
 
 if (isdefined(Main,:PropagateState) && Main.PropagateState==true)
