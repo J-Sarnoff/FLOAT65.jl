@@ -10,7 +10,7 @@ const HugeValue = "⬬"
 const TinyName  = "TINY"
 const HugeName  = "HUGE"
 
-const Exactly   = "⌁"
+const Exactly   = "𝆘 #""⌁"
 const Inexactly = "~"
 
 function show(io::IO, x::Float65)
