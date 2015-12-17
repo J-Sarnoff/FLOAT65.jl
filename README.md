@@ -49,5 +49,8 @@ julia> pi_set*pi_clr, getstate(pi_set*pi_clr)
 julia> pi_clr*pi_clr, getstate(pi_clr*pi_clr)
 (9.869604401089358⌁,false)
 
+julia> tiny=Float65(1.0e-250); huge=Float65(1.0e+250);
+julia> tiny, 1/huge, tiny/huge, 1/tiny, huge, huge-tiny
+(+TINY,+TINY,+TINY,+HUGE,+HUGE,+HUGE)
 
 ```
