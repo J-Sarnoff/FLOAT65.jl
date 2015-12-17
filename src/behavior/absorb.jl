@@ -38,13 +38,12 @@ function project{F<:AbstractFloat}(fp::F)
 end    
 
 function reflect{F<:AbstractFloat}(fp::F)
-    fp = clr_ebit(fp)
-    if TinyProjected(F) < fp < HugeProjected(F)
-        pullback(fp)
+    if TinyProjected(F) < abs(fp) < HugeProjected(F)
+        pullback(clr_ebit(fp))
     elseif fp == 0.0
         fp
     elseif isfinite(fp)
-       if fp <= TinyProjected(F)
+       if clr_ebit(fp) <= TinyProjected(F)
            signbit(fp) ? -Tiny(F) : Tiny(F)
        else
            signbit(fp) ? -Huge(F) : Huge(F)
