@@ -34,3 +34,5 @@ clearstate(x::Float64) = convert(Float65,x)
 setstate(x::Float64) = setstate(convert(Float65,x))
 setstate(x::Float64,s::Bool) = setstate(convert(Float65,x),s)
 getstate(x::Float64) = false
+
+clrstate=clearstate
