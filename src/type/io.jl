@@ -6,37 +6,11 @@ const PosInfValue = "+∞"
 const NegInfValue = "-∞" 
 const InfName     = "Inf65"
 
-const TinyValue = "⬭"
-const HugeValue = "⬬"
 const TinyName  = "TiNY"
 const HugeName  = "HuGE"
 
 const Exactly   = "̇ "
 const Inexactly = "~"
-
-const OpenLeft    = "⟓"
-const ClosedLeft  = "⟔"
-const OpenRight   = "⟔"
-const ClosedRight = "⟓"
-
-const LeftTwoParens       = "｟"
-const RightTwoParens      = "｠"
-const LeftFullParens      = "（"
-const RightFullParens     = "）"
-
-const LeftCurvyAngle      = "⧼"
-const RightCurvyAngle     = "⧽"
-const LeftShallowWithDot  = "⦑"
-const RightShallowWithDot = "⦒"
-
-const LeftAngleWithArc    = "⦓"
-const RightAngleWithArc   = "⦔"
-const LeftAngleWithArcs   = "⦖"
-const RightAngleWithArcs  = "⦕"
-
-const InfinityTied = "⧝"
-const InfinitySplit = "⧞"
-const InfinityUnfinished = "⧜"
 
 
 
@@ -50,7 +24,7 @@ function show(io::IO, x::Float65)
            s = prepshow(fp, state)
         elseif fp == 0.0
            s = prepshow0(fp, state)
-        elseif fp <= AsTiny(Float64)
+        elseif fp <= Tiny(Float64)
           s = prepshowTiny(fp, state)
         else
           s = prepshowHuge(fp, state)
