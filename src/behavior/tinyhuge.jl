@@ -19,14 +19,14 @@
 =#
 
 
-@inline isTiny{T<:AbstractFloat}(x::T) = (abs(x) <= Tiny(T)) & nonzero(x)
-@inline isHuge{T<:AbstractFloat}(x::T) = (abs(x) >= Huge(T)) & noninf(x)
+@inline isTiny{T<:AbstractFloat}(x::T) = (abs(x) <= Tiny(T)) & isnotzero(x)
+@inline isHuge{T<:AbstractFloat}(x::T) = (abs(x) >= Huge(T)) & isnotinf(x)
 # projection takes domain(Float64) onto  halfdomain(Float64)
-@inline isProjectedTiny{T<:AbstractFloat}(x::T) = (abs(x) <= TinyProjected(T)) & nonzero(x)
-@inline isProjectedHuge{T<:AbstractFloat}(x::T) = (abs(x) >= HugeProjected(T)) & noninf(x)
+@inline isProjectedTiny{T<:AbstractFloat}(x::T) = (abs(x) <= TinyProjected(T)) & isnotzero(x)
+@inline isProjectedHuge{T<:AbstractFloat}(x::T) = (abs(x) >= HugeProjected(T)) & isnotinf(x)
 # stateful takes projection into one of two coextant, equivalued halfdomain(Float64) bistablities
-@inline isStatefulTiny{T<:AbstractFloat}(x::T) = (abs(x) <= TinyProjected(T)) & nonzero(x)
-@inline isStatefulHuge{T<:AbstractFloat}(x::T) = (abs(x) >= HugeProjected(T)) & noninf(x)
+@inline isStatefulTiny{T<:AbstractFloat}(x::T)  = (abs(x) <= TinyProjected(T)) & isnotzero(x)
+@inline isStatefulHuge{T<:AbstractFloat}(x::T)  = (abs(x) >= HugeProjected(T)) & isnotinf(x)
 
 
 # Bias is used in projective and reflective mappings (projection and reflection behave as dual ops)
