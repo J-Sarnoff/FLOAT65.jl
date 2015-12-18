@@ -32,15 +32,15 @@ include("type/compare.jl")
 include("type/io.jl")
 include("type/wrapfuns.jl")
 
-if (isdefined(Main,:PropagateState) && Main.PropagateState==true)
-
-include("math/propagateState/arith.jl")
-include("math/propagateState/elementary.jl")
-
-else # do not propogate the set state
+if (isdefined(Main,:NoStatePropagation) && Main.NoStatePropagatione==true)
 
 include("math/assignState/arith.jl")
 include("math/assignState/elementary.jl")
+
+else # propagate the set state
+
+include("math/propagateState/arith.jl")
+include("math/propagateState/elementary.jl")
 
 end
 
