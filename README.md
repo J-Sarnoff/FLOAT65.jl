@@ -40,10 +40,16 @@ julia> pi_set*pi_set, getstate(pi_set*pi_set)  # (9.869604401089358~,true)
 julia> pi_set*pi_clr, getstate(pi_set*pi_clr)  # (9.869604401089358̇ ,false)
 julia> pi_clr*pi_clr, getstate(pi_clr*pi_clr)  # (9.869604401089358̇ ,false)
 
-julia> tiny=Float65(1.0e-250); huge=Float65(1.0e+250);
+# Tiny and Huge collect the nonrepresetable nonzero finite Float64 magnitudes 
+#    they work resonably well in arithmetic expressions, 
+#    support for their use in elementary functions is not present
 
-julia> tiny, 1/huge, tiny/huge, 1/tiny, huge, huge-tiny
-(+TINY,+TINY,+TINY,+HUGE,+HUGE,+HUGE)
+julia> tiny=Float65(2.893e-154); another_tiny=Float65(1.0e-250); 
+       huge=Float65(3.352e+153); another_huge=Float65(1.0e+250);
+       tiny==antother_tiny, huge==another_huge
+(true, true)
+julia> tiny==another_tiny, tiny, 1/huge, tiny/huge, 1/tiny, huge, huge-tiny
+(+TiNY,+TiNY,+iINY,+HuGE,+HuGE,+HuGE)
 julia> tiny+tiny, tiny-tiny, tiny*tiny, tiny/tiny
 (+TiNY,0.0̇ ,+TiNY,1.0̇ )
 
