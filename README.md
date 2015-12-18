@@ -33,28 +33,23 @@ PropagateState = true        # the set state will propogate through arithmetic
 using FLOAT65                # PropagateState = true (MUST come first if used)
 
 pi_clr = Float65(pi); pi_set = setstate(Float65(pi));
-julia> pi_clr,getstate(pi_clr), pi_set,getstate(pi_set)
-(3.141592653589793⌁,false,3.141592653589793~,true)   # unset|exact value⌁   set|inexact value~
+julia> getstate(pi_clr), pi_clr # ( false, 3.141592653589793̇ )  #  unset state,   exact valuė     value dots final digit
+julia> getstate(pi_set), pi_set # ( true,  3.141592653589793⌁)  #    set state, inexact value~    value has postfix '~' 
 
 pi_tst = pi_clr; s1=getstate(pi_tst); setstate(pi_tst); s2=getstate(pi_tst); s3=getstate(clearstate(pi_tst));
-julia> s1,s2,s3
-(false,true,false)
+julia> s1,s2,s3 # (false,true,false)
 
-julia> a = exp(pi_clr); b = exp(pi_set); a, getstate(a), b, getstate(b)
-(23.140692632779267⌁,false,23.140692632779267~,true)
-
-julia> pi_set*pi_set, getstate(pi_set*pi_set)
-(9.869604401089358~,true)
-julia> pi_set*pi_clr, getstate(pi_set*pi_clr)
-(9.869604401089358~,true)
-julia> pi_clr*pi_clr, getstate(pi_clr*pi_clr)
-(9.869604401089358⌁,false)
+julia> pi_set*pi_set, getstate(pi_set*pi_set)  # (9.869604401089358~,true)
+julia> pi_set*pi_clr, getstate(pi_set*pi_clr)  # (9.869604401089358̇ ,false)
+julia> pi_clr*pi_clr, getstate(pi_clr*pi_clr)  # (9.869604401089358̇ ,false)
 
 julia> tiny=Float65(1.0e-250); huge=Float65(1.0e+250);
+
 julia> tiny, 1/huge, tiny/huge, 1/tiny, huge, huge-tiny
 (+TINY,+TINY,+TINY,+HUGE,+HUGE,+HUGE)
 julia> tiny+tiny, tiny-tiny, tiny*tiny, tiny/tiny
-(+TINY,0.0𝆘,+TINY,1.0𝆘)
+(+TiNY,0.0̇ ,+TiNY,1.0̇ )
 
-huge*huge
+julia> tiny*tiny, tiny/huge, huge*huge, huge/tiny, tiny*huge
+(+TiNY,+TiNY,+HuGE,+HuGE,1.0̇ )
 ```
