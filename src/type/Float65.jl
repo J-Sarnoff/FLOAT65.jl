@@ -2,21 +2,6 @@
         Float65
 =#
 
-
-
-#=
-                                     subobject classifiers
-   leaf types of shared abstraction
-=#
-
-immutable SituatedFloat64  <: MetastableFloat
-    fp::Float64
-end
-immutable StatefulFloat64  <: MetastableFloat
-    fp::Float64
-end
-
-
 type Float65 <: Real
    fp::Float64
    
@@ -58,3 +43,22 @@ getstate(x::Float64) = false
 @vectorize_1arg Float65 getstate
 @vectorize_1arg Float65 setstate
 @vectorize_1arg Float65 clearstate
+
+
+#         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#=
+                                     subobject classifiers
+   leaf types of shared abstraction
+=#
+#=
+immutable SituatedFloat  <: MetastableFloat
+    fp::Float64
+end
+immutable StatefulFloat  <: MetastableFloat
+    fp::Float64
+end
+
+convert{F<:MetastableFloat}(::Type{F}, x::SituatedFloat) = x.fp
+convert{F<:Float64}(::Type{F}, x::StatefulFloat) = x.fp
+=#
