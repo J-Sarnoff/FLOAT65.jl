@@ -18,3 +18,4 @@ one(x::Float65)  = one(Float65)
 sizeof(::Type{Float65}) = 8
 sizeof(x::Float65) = sizeof(Float65)
 
+hash(x::Float65, h::UInt) = hash(x.fp, h)
