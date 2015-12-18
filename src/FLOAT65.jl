@@ -15,7 +15,7 @@ import Base: convert, promote_rule, reinterpret, show, showcompact,
              asinh, acosh, atanh, acsch, asech, acoth,
              (^)
              
-export Float65, getstate, setstate, clearstate, clrstate # clrstate and clearstate are synonyms
+export Float65, getstate, setstate, clearstate
 
 
 include("behavior/Reinterpret.jl")
@@ -25,6 +25,7 @@ include("behavior/absorb.jl")
 
 include("type/Float65.jl")
 include("type/basics.jl")
+include("type/predicates.jl")
 include("type/compare.jl")
 include("type/io.jl")
 include("type/wrapfuns.jl")
