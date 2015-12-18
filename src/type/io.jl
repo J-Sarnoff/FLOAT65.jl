@@ -92,3 +92,23 @@ end
 function prepshowNaN(fp::Float64, state::Bool)
    NaNValue
 end
+
+
+# read(IO, x), write(IO, x)
+
+function read{T<:MetastableFloat}(io::IO, ::Type{T})
+    fp = read(io, T)
+    convert(Float65, v) 
+end
+
+function write{T<:MetastableFloat}(io::IO, fp::T)
+    
+    if getstate(fp)
+       value = StatefulFloat64(64)
+    else
+       value = SituatedFloat64(value)
+    end
+       
+    write(io, value)
+end
+
