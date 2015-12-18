@@ -24,16 +24,7 @@ using Distributions
 using FLOAT65
 ```
 
-```
-Automatic propagation of the set state either occurs for all arithmetic and elementary functions,
-or for none.  Either way, state may be set or cleared directly with setstate(x) and clearstate(x).
-The set state will propagate unless when this module loads it finds this variable is assigned true:
-Main.NoStatePropagation.
 
-NoStatePropagation = true    # the set state will not propagate into the result of
-                             #     arithmetic and elementary function calculations
-using FLOAT65                # NoStatePropagation = true (MUST come first if used)
-```
 ```julia
 pi_clr = Float65(pi); pi_set = setstate(Float65(pi));
 julia> getstate(pi_clr), pi_clr # ( false, 3.141592653589793̇ )  #  unset state,   exact valuė     value dots final digit
@@ -55,4 +46,14 @@ julia> tiny+tiny, tiny-tiny, tiny*tiny, tiny/tiny
 
 julia> tiny*tiny, tiny/huge, huge*huge, huge/tiny, tiny*huge
 (+TiNY,+TiNY,+HuGE,+HuGE,1.0̇ )
+```
+```
+Automatic propagation of the set state either occurs for all arithmetic and elementary functions,
+or for none.  Either way, state may be set or cleared directly with setstate(x) and clearstate(x).
+The set state will propagate unless when this module loads it finds this variable is assigned true:
+Main.NoStatePropagation.
+
+NoStatePropagation = true    # the set state will not propagate into the result of
+                             #     arithmetic and elementary function calculations
+using FLOAT65                # NoStatePropagation = true (MUST come first if used)
 ```
