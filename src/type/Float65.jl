@@ -1,3 +1,21 @@
+#=
+        Float65
+=#
+
+
+
+#=
+                                     subobject classifiers
+   leaf types of shared abstraction
+=#
+
+immutable SituatedFloat64  <: MetastableFloat
+    fp::Float64
+end
+immutable StatefulFloat64  <: MetastableFloat
+    fp::Float64
+end
+
 
 type Float65 <: Real
    fp::Float64
