@@ -27,8 +27,10 @@ using FLOAT65
 
 ```julia
 pi_clr = Float65(pi); pi_set = setstate(Float65(pi));
-julia> getstate(pi_clr), pi_clr # ( false, 3.141592653589793̇ )  #  unset state,   exact valuė     value dots final digit
-julia> getstate(pi_set), pi_set # ( true,  3.141592653589793⌁)  #    set state, inexact value~    value has postfix '~' 
+julia> getstate(pi_clr), pi_clr
+( false, 3.141592653589793̇ )  #  unset state, exact   valuė   (postfixes dot above digit)
+julia> getstate(pi_set), pi_set
+( true,  3.141592653589793⌁)  #    set state, inexact value~  (postfixes '~') 
 
 pi_tst = pi_clr; s1=getstate(pi_tst); setstate(pi_tst); s2=getstate(pi_tst); s3=getstate(clearstate(pi_tst));
 julia> s1,s2,s3 # (false,true,false)
