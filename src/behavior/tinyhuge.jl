@@ -1,22 +1,41 @@
- 
+
 #=
-    Tiny if exponent(Float64) <= -509                         Huge if exponent(Float64) >= 510
-    TinyAsValue == ldexp(0.5,-509)        <reciprocals>       HugeAsValue == ldexp(0.5,511)
-                            1.19e-153     central range    8.38e+152
-      ldexp(prevfloat(prevfloat(1.0)), -508) ...0.0... ldexp(nextfloat(0.5),509)
-                                          <reciprocals>
+    roles
+
+    Tiny[Huge] is a collective value, gathering all finite Float64 values <= [>=] itself.
+    Tiny[Huge] is largest inadmissble small [smallest inadmissable large] discrete magnitude.
+
+    constraints
+
+     isfinite(Tiny) & !issubnormal(Tiny) & isfinite(Huge) & !!issubnormal(Tiny)
+     ldexp(0.5,-510) < Tiny < ldexp(0.5,-508)  
+     ldexp(0.5,+509) < Huge < ldexp(0.5,+512)
+     0.0 == 1.0-Tiny*Huge == Huge-1.0/Tiny == Tiny-1.0/Huge
+     
+     assignments
+     
+     Tiny = parse(Float64, "0x1p-510") # ldexp(0.5, -509) == 2.9833_3629_2480_0830e-154
+     Huge = parse(Float64, "0x1p+510") # ldexp(0.5, +511) == 3.3519_5198_2485_6493e+153
 =#
 
-@inline isTiny{T<:AbstractFloat}(x::T) = (x <= AsTiny(T)) & (x != zero(T))
-@inline isHuge{T<:AbstractFloat}(x::T) = (x >= AsHuge(T)) & (x != (T)(Inf))
-@inline isTinyProjected{T<:AbstractFloat}(x::T) = (x <= AsTinyProjected(T)) & (x != zero(T))
-@inline isHugeProjected{T<:AbstractFloat}(x::T) = (x >= AsHugeProjected(T)) & (x != (T)(Inf))
+
+@inline isTiny{T<:AbstractFloat}(x::T) = (abs(x) <= Tiny(T)) & nonzero(x)
+@inline isHuge{T<:AbstractFloat}(x::T) = (abs(x) >= Huge(T)) & noninf(x)
+# projection takes domain(Float64) onto  halfdomain(Float64)
+@inline isProjectedTiny{T<:AbstractFloat}(x::T) = (abs(x) <= TinyProjected(T)) & nonzero(x)
+@inline isProjectedHuge{T<:AbstractFloat}(x::T) = (abs(x) >= HugeProjected(T)) & noninf(x)
+# projection takes domain(Float64) onto  halfdomain(Float64)
+@inline isStatefulTiny{T<:AbstractFloat}(x::T) = (abs(x) <= TinyProjected(T)) & nonzero(x)
+@inline isStatefulHuge{T<:AbstractFloat}(x::T) = (abs(x) >= HugeProjected(T)) & noninf(x)
 
 
-# huge/tiny gathers all finite values larger/smaller (or equal) itself
-# huge, tiny before projective transform
-Bias(::Type{Float64})   = 511                     # exponent_bias(Float64) >> 1
-AsTiny(::Type{Float64}) = 1.1933345169920327e-153 # first inadmissible small magnitude
+
+Bias(::Type{Float64}) = 511                     # exponent_bias(Float64) >> 1
+Bias(::Type{UInt64})  = 0x00000000000001ff      # for use with other UInt64 bitforms
+
+# Tiny and Huge, valuations to be used as proxies for their respective collective intent.
+#
+AsTiny(::Type{Float64}) = 1.1933345169920327e-153 # first inadmissible small magnitude & all smallest
 AsHuge(::Type{Float64}) = 8.379879956214127e152   # first inadmissible large magnitude
                                                   # 1/AsTiny == AsHuge, 1/AsHuge == AsTiny
 Tiny(::Type{Float64})   = 2.983336292480083e-154  # collective value representing all smallest normal magnitudes
