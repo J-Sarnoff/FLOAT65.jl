@@ -1,6 +1,7 @@
 module FLOAT65
 
-import Base: convert, promote_rule, reinterpret, show, showcompact,
+import Base: convert, promote_rule, reinterpret, 
+             show, showcompact, read, write,
              sizeof, hash,
              typemin, typemax, realmin, realmax,
              isinf, isnan, issubnormal, isfinite, isinteger,
