@@ -1,20 +1,21 @@
 module FLOAT65
 
 import Base: convert, promote_rule, reinterpret, show, showcompact,
-             typemin, typemax, realmin, realmax, sizeof,
+             sizeof, hash,
+             typemin, typemax, realmin, realmax,
              isinf, isnan, issubnormal, isfinite, isinteger,
              zero, one, sign, signbit, abs, eps,
              (==),(!=),(<),(<=),(>=),(>), isless, isequal,
-             (+),(-),(*),(/),(\),(%), sqrt,
+             (+),(-),(*),(/),(\),(%),(^),sqrt,
+             (.+),(.-),(.*),(./),(.\),(.^),
              min, max, minmax,
              div, fld, rem, mod, mod1, rem1, fld1,
              exp, expm1, log, log1p,
              sin, cos, tan, csc, sec, cot,
              asin, acos, atan, acsc, asec, acot,
              sinh, cosh, tanh, csch, sech, coth,
-             asinh, acosh, atanh, acsch, asech, acoth,
-             (^)
-             
+             asinh, acosh, atanh, acsch, asech, acoth
+
 export Float65, 
        getstate, setstate, clearstate
 
