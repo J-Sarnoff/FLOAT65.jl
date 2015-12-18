@@ -27,10 +27,10 @@ function project{F<:AbstractFloat}(fp::F)
     elseif isfinite(fp)
        if fp == 0.0
            fp
-       elseif fp < Huge(F)    # Tiny and Huge are formed in the enchaned state (collective values)
-           signbit(fp) ? -set_ebit(TinyProjected(F)) : set_ebit(TinyProjected(F))
+       elseif fp < Huge(F) 
+           signbit(fp) ? -TinyProjected(F) : TinyProjected(F)
        else
-           signbit(fp) ? -set_ebit(HugeProjected(F)) : set_ebit(HugeProjected(F))
+           signbit(fp) ? -HugeProjected(F) : HugeProjected(F)
        end
     else  # ±Inf or NaN
        isinf(fp) ? set_ebit(fp) : fp
