@@ -20,14 +20,14 @@ end
 end 
 
 function project{F<:AbstractFloat}(fp::F)
-    if AsTiny(F) <= fp <= AsHuge(F)
+    if Tiny(F) < fp < Huge(F)
       pushout(fp)
     elseif fp == 0.0
        fp
     elseif isfinite(fp)
        if fp == 0.0
            fp
-       elseif fp < AsHuge(F)    # Tiny and Huge are formed in the enchaned state (collective values)
+       elseif fp < Huge(F)    # Tiny and Huge are formed in the enchaned state (collective values)
            signbit(fp) ? -set_ebit(TinyProjected(F)) : set_ebit(TinyProjected(F))
        else
            signbit(fp) ? -set_ebit(HugeProjected(F)) : set_ebit(HugeProjected(F))
