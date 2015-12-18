@@ -46,6 +46,7 @@ getstate(x::Float64) = false
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+#    dispatch narrowing
 #=
                                      subobject classifiers
    leaf types of shared abstraction
