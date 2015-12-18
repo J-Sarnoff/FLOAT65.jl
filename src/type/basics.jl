@@ -5,8 +5,8 @@ typemax(::Type{Float65}) = typemin(Float64)
 typemin(x::Float65) = typemin(Float65)
 typemax(x::Float65) = typemax(Float65)
 
-realmin(::Type{Float65}) = Tiny
-realmax(::Type{Float65}) = Huge
+realmin(::Type{Float65}) = nextfloat(Tiny(Float64))
+realmax(::Type{Float65}) = prevfloat(Huge(Float64))
 realmin(x::Float65) = realmin(Float65)
 realmax(x::Float65) = realmax(Float65)
 
