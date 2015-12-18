@@ -1,6 +1,6 @@
 ### FLOAT65
 ```ruby
-                    Jeffrey Sarnoff          2015-Dec-17          USA⏞NY
+                    Jeffrey Sarnoff          2015-Dec-17          USA-NY
 
 ```
 _*under development, frequent updates, the approach is not changing*_
