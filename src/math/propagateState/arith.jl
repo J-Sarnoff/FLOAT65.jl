@@ -12,7 +12,7 @@ function (-){T<:Float65}(a::T)
     value
 end
 
-for fn in (:abs, :sqrt)
+for fn in (:abs)
    @eval begin
 
       function ($fn){T<:Float65}(a::T)
@@ -24,6 +24,18 @@ for fn in (:abs, :sqrt)
       end
    end
 end   
+
+const sqrt65 = Dict( tiny => tiny, huge => huge )
+function sqrt{T<:Float65}(a::T)
+    get(sqrt65, a, sqrt65fn(a))
+end    
+function sqrt65fn{T<:Float65}(a::T)
+    value = (T)( ($fn)(reflect(a.fp)) )
+    if getstate(a)
+        value = setstate(value)
+    end
+    (T)( value )
+end 
 
 
 for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^), 
