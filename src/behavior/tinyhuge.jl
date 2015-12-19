@@ -18,15 +18,25 @@
      Huge = parse(Float64, "0x1p+510") # ldexp(0.5, +511) == 3.3519_5198_2485_6493e+153
 =#
 
+@inline clrabs{T<:Float65}(x::T) = clearstate(abs(x))
 
-@inline isTiny{T<:AbstractFloat}(x::T) = (abs(x) <= Tiny(T)) & isnotzero(x)
-@inline isHuge{T<:AbstractFloat}(x::T) = (abs(x) >= Huge(T)) & isnotinf(x)
+@inline isTiny{T<:AbstractFloat}(x::T) = ((abs(x) <= Tiny(T)) & isnotzero(x))
+@inline isHuge{T<:AbstractFloat}(x::T) = ((abs(x) >= Huge(T)) & isnotinf(x))
 # projection takes domain(Float64) onto  halfdomain(Float64)
-@inline isProjectedTiny{T<:AbstractFloat}(x::T) = (abs(x) <= TinyProjected(T)) & isnotzero(x)
-@inline isProjectedHuge{T<:AbstractFloat}(x::T) = (abs(x) >= HugeProjected(T)) & isnotinf(x)
+#@inline isProjectedTiny{T<:AbstractFloat}(x::T) = (abs(x) <= TinyProjected(T)) & isnotzero(x)
+#@inline isProjectedHuge{T<:AbstractFloat}(x::T) = (abs(x) >= HugeProjected(T)) & isnotinf(x)
 # stateful takes projection into one of two coextant, equivalued halfdomain(Float64) bistablities
-@inline isStatefulTiny{T<:AbstractFloat}(x::T)  = (abs(x) <= TinyProjected(T)) & isnotzero(x)
-@inline isStatefulHuge{T<:AbstractFloat}(x::T)  = (abs(x) >= HugeProjected(T)) & isnotinf(x)
+#@inline isStatefulTiny{T<:AbstractFloat}(x::T)  = (abs(x) <= TinyProjected(T)) & isnotzero(x)
+#@inline isStatefulHuge{T<:AbstractFloat}(x::T)  = (abs(x) >= HugeProjected(T)) & isnotinf(x)
+
+@inline isTiny{T<:Float65}(x::T) = (abs(x) <= TinyProjected(Float64)) & isnotzero(x)
+@inline isHuge{T<:Float65}(x::T) = (abs(x) >= HugeProjected(Float64)) & isnotinf(x)
+# projection takes domain(Float64) onto  halfdomain(Float64)
+@inline isProjectedTiny{T<:Float65}(x::T) = isTiny(clrabs(x))
+@inline isProjectedHuge{T<:Float65}(x::T) = isHuge(clrabs(x))
+# stateful takes projection into one of two coextant, equivalued halfdomain(Float64) bistablities
+@inline isStatefulTiny{T<:Float65}(x::T)  = getstate(x) && isTiny(clrabs(x))
+@inline isStatefulHuge{T<:Float65}(x::T)  = getstate(x) && isHuge(clrabs(x))
 
 
 # Bias is used in projective and reflective mappings (projection and reflection behave as dual ops)
