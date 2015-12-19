@@ -24,7 +24,7 @@ export Float65,
 
 include("type/abstract.jl")
 include("type/Float65.jl")
-include("type/conversions.jl")
+include("type/conversion.jl")
 include("type/basics.jl")
 include("type/predicates.jl")
 include("type/compare.jl")
