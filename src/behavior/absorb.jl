@@ -30,7 +30,8 @@ end                                                    # pushout of/from a syste
    reinterpret(F,put_exponent(fp, stationaryExponent))
 end                                                    # pullback from/of a stationedFloat, pullback a systemFloat
 
-function project{F<:AbstractFloat}(fp::F)
+
+function project{F<:AbstractFloat}(fp::F)              # systemFloat projects, imaged projection is situated
     if Tiny(F) < fp < Huge(F)
       pushout(fp)
     elseif fp == 0.0
@@ -48,7 +49,7 @@ function project{F<:AbstractFloat}(fp::F)
     end
 end    
 
-function reflect{F<:AbstractFloat}(fp::F)
+function reflect{F<:AbstractFloat}(fp::F)               # reflection transmisses rev-oriented, image is onto systemFloat
     if TinyProjected(F) < abs(fp) < HugeProjected(F)
         pullback(clr_ebit(fp))
     elseif fp == 0.0
