@@ -9,8 +9,8 @@ const InfName     = "Inf65"
 const TinyName  = "TiNY"
 const HugeName  = "HuGE"
 
-const Exactly   = "̇ "
-const Inexactly = "~"
+const Exactly   = "" # "̇ "
+const Inexactly = ":" # "~"
 
 
 
