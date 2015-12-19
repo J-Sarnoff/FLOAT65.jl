@@ -25,7 +25,7 @@ for fn in (:abs,)
    end
 end   
 
-const sqrt65 = Dict( tiny => tiny, huge => huge )
+const sqrt65 = Dict( Tiny => Tiny, Huge => Huge )
 function sqrt{T<:Float65}(a::T)
     get(sqrt65, a, sqrt65fn(a))
 end    
