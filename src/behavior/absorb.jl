@@ -9,15 +9,26 @@
 =#
 
 
+#=
+    givenFloat
+         FloatExponent  -->  stationedExponent
+                                      stationedFloat
+                                      
+                                      stationedFloat
+                                               stationedExponent  -->  stationaryExponent
+          FloatExponent                                                stationaryExponent
+               givenFloat                  =                 stationaryFloat                                           
+                                               
+=#
 @inline function pushout{F<:AbstractFloat}(fp::F)
-   stationedExponent = get_exponent(fp) - Bias(F)
+   stationedExponent = get_exponent(fp) - Bias(F) 
    reinterpret(F,put_exponent(fp, stationedExponent))
-end
+end                                                    # pushout of/from a systemFloat, pushout a stationedFloat
 
 @inline function pullback{F<:AbstractFloat}(fp::F)
    stationaryExponent = get_exponent(fp) + Bias(F)
    reinterpret(F,put_exponent(fp, stationaryExponent))
-end 
+end                                                    # pullback from/of a stationedFloat, pullback a systemFloat
 
 function project{F<:AbstractFloat}(fp::F)
     if Tiny(F) < fp < Huge(F)
