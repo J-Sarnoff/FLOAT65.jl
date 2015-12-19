@@ -24,17 +24,18 @@ export Float65,
 
 include("type/abstract.jl")
 include("type/Float65.jl")
+include("type/conversions.jl")
+include("type/basics.jl")
+include("type/predicates.jl")
+include("type/compare.jl")
+include("type/io.jl")
+include("type/wrapfuns.jl")
 
 include("behavior/Reinterpret.jl")
 include("behavior/ebit.jl")
 include("behavior/tinyhuge.jl")
 include("behavior/absorb.jl")
 
-include("type/basics.jl")
-include("type/predicates.jl")
-include("type/compare.jl")
-include("type/io.jl")
-include("type/wrapfuns.jl")
 
 if (isdefined(Main,:NoStatePropagation) && Main.NoStatePropagatione==true)
 
