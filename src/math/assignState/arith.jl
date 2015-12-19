@@ -4,7 +4,15 @@ isinteger(a::Float65) = isinteger(reflect(a.fp))
 
 (-){T<:Float65}(a::T)   = (T)( (-)(reflect(a.fp)) )
 (abs){T<:Float65}(a::T) = (T)( (abs)(reflect(a.fp)) )
-sqrt{T<:Float65}(a::T)  = (T)( sqrt(reflect(a.fp)) )
+
+const sqrt65 = Dict( tiny => tiny, huge => huge )
+function sqrt{T<:Float65}(a::T)
+    get(sqrt65, a, sqrt65fn(a))
+end    
+function sqrt65fn{T<:Float65}(a::T)
+    (T)( sqrt(reflect(a.fp)) )
+end
+
 
 for op in (:(+), :(-), :(*), :(/), :(\), :(%), :(^),
            :div, :fld, :rem, :mod, :mod1, :rem1, :fld1)
