@@ -31,7 +31,7 @@ end                                                    # pushout of/from a syste
 end                                                    # pullback from/of a stationedFloat, pullback a systemFloat
 
 
-function project{F<:AbstractFloat}(fp::F)              # systemFloat projects, imaged projection is situated
+function project{F<:AbstractFloat}(fp::F)
     if Tiny(F) < fp < Huge(F)
       pushout(fp)
     elseif fp == 0.0
@@ -49,18 +49,17 @@ function project{F<:AbstractFloat}(fp::F)              # systemFloat projects, i
     end
 end    
 
-function reflect{F<:AbstractFloat}(fp::F)               # reflection transmisses rev-oriented, image is onto systemFloat
-    if TinyProjected(F) < abs(fp) < HugeProjected(F)
-        pullback(clr_ebit(fp))
-    elseif fp == 0.0
-        fp
-    elseif isfinite(fp)
-       if clr_ebit(fp) <= TinyProjected(F)
-           signbit(fp) ? -Tiny(F) : Tiny(F)
+function reflect{F<:AbstractFloat}(fp::F)
+    if iszero(fp) | isnotfinite(fp)
+       signbit(fp) ? -fp : fp
+    else
+       cafp = abs(clr_ebit(fp))
+       if TinyProjected(F) < cafp < HugeProjected(F)
+           flipsign( pullback(cafp), fp)
+       elseif cafp >= TinyProjected(F)
+           flipsign( Tiny(F), fp )
        else
-           signbit(fp) ? -Huge(F) : Huge(F)
-       end
-    else # ±Inf or NaN
-        fp
+           flipsign( Huge(F), fp )
+       end   
     end
 end
