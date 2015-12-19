@@ -1,6 +1,8 @@
-@inline isnotzero{T<:AbstractFloat}(x::T) = (zero(T) != x)
-@inline isnotinf{T<:AbstractFloat}(x::T)  = (!isinf(x))
-@inline isnormal{T<:AbstractFloat}(x::T)  = (!isnan(x) & !isinf(x) & !issubnormal(x))
+@inline isnotfinite{T<:AbstractFloat}(x::T)  = (isinf(x) | isnan(x)) 
+@inline isnormal{T<:AbstractFloat}(x::T)     = !(isinf(x) | isnan(x) | issubnormal(x))
+@inline isnotzero{T<:AbstractFloat}(x::T)    = (zero(T) != x)
+@inline isnotinf{T<:AbstractFloat}(x::T)     = (!isinf(x))
+
 
 # these do not require decoding to work correctly
 
