@@ -12,7 +12,7 @@ function (-){T<:Float65}(a::T)
     value
 end
 
-for fn in (:abs)
+for fn in (:abs,)
    @eval begin
 
       function ($fn){T<:Float65}(a::T)
