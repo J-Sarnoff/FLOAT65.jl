@@ -58,7 +58,7 @@ function reflect{F<:AbstractFloat}(fp::F)
        cafp = abs(clr_ebit(fp))
        if TinyProjected(F) < cafp < HugeProjected(F)
            flipsign( pullback(cafp), fp)
-       elseif cafp >= TinyProjected(F)
+       elseif cafp <= TinyProjected(F)
            flipsign( Tiny(F), fp )
        else
            flipsign( Huge(F), fp )
