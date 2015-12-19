@@ -21,13 +21,15 @@ export Float65,
        getstate, setstate, clearstate
 
 
+
+include("type/abstract.jl")
+include("type/Float65.jl")
+
 include("behavior/Reinterpret.jl")
 include("behavior/ebit.jl")
 include("behavior/tinyhuge.jl")
 include("behavior/absorb.jl")
 
-include("type/abstract.jl")
-include("type/Float65.jl")
 include("type/basics.jl")
 include("type/predicates.jl")
 include("type/compare.jl")
