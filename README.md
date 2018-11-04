@@ -1,4 +1,3 @@
-### FLOAT65
 
 >   TODO
 > >   Fix Tiny * Huge and Remedy Tiny*8, Huge/8
